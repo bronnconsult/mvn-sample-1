@@ -28,6 +28,7 @@ jobs:
         with:
           add: pom.xml
           message: 'Increment version'
+          push: true
       - name: Publish to GitHub Packages Apache Maven
         run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
         env:
