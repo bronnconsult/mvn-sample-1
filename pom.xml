@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.aetion.sample</groupId>
 	<artifactId>sample-service</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<name>sample-service</name>
 	<description>Sample service with Versioning</description>
 	<properties>
@@ -101,12 +101,21 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>versions-maven-plugin</artifactId>
-						<configuration>
-							<generateBackupPoms>false</generateBackupPoms>
-							<newVersion>
-								${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}
-							</newVersion>
-						</configuration>
+						<executions>
+							<execution>
+								<id>increment-version</id>
+								<configuration>
+									<generateBackupPoms>false</generateBackupPoms>
+									<newVersion>
+										${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.nextIncrementalVersion}
+									</newVersion>
+								</configuration>
+								<goals>
+									<goal>set</goal>
+								</goals>
+								<phase>validate</phase>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
